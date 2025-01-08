@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <!-- Phân trang -->
+    <div class="pagination">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+        <i class="bi bi-caret-left"></i>
+        </button>
+    
+        <ng-container *ngFor="let page of visiblePages">
+        <button
+            *ngIf="page !== '...'; else dots"
+            [class.active]="page === currentPage"
+            (click)="changePage(page)">
+            {{ page }}
+        </button>
+        <ng-template #dots>
+            <span>...</span>
+        </ng-template>
+        </ng-container>
+    
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+        <i class="bi bi-caret-right"></i>
+        </button>
+    </div>
+    
+    <div class="contact-table-container">
+        <table class="contact-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Họ tên</th>
+                    <th>Tên tài khoản</th>
+                    <th>Email</th>
+                    <th>Yêu cầu</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of paginatedData">
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.fullName }}</td>
+                    <td>{{ row.userName }}</td>
+                    <td>{{ row.email }}</td>
+                    <td>{{ row.request }}</td>
+                    <td [ngClass]="{'resolved-status': true, 'resolved': row.status === 'Giải quyết'}">
+                        {{ row.status || 'Chưa giải quyết' }}
+                    </td>
+                    <td>
+                        <button class="delete-btn" (click)="showConfirmDialog()">Xóa</button>
+                            <div *ngIf="isConfirmDialogVisible" class="confirm-dialog">
+                                <div class="confirm-dialog-content">
+                                    <p>Bạn có chắc chắn muốn xóa?</p>
+                                    <button (click)="deleteItem()" class="confirm-btn">Xác nhận</button>
+                                    <button (click)="cancelDelete()" class="cancel-btn">Hủy</button>
+                                </div>
+                            </div>
+                        <button class="resolve-btn" (click)="toggleLockStatus(row)">
+                        {{ row.status === 'Giải quyết' ? 'Hủy xác nhận' : 'Xác nhận' }}
+                        </button>
+                        <button class="detail-btn" (click)="navigateToDetailContact()">Xem chi tiết</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="menu">
+        <button (click)="setActive('playlist')" [class.active]="activeButton === 'playlist'">Danh sách phát</button>
+        <button (click)="setActive('recent')" [class.active]="activeButton === 'recent'">Nghe gần đây</button>
+    </div>
+
+    <div *ngIf="activeButton === 'playlist'">
+        <p>Đây là nội dung của Danh sách phát.</p>
+    </div>
+    <div *ngIf="activeButton === 'recent'">
+        <p>Đây là nội dung của Nghe gần đây.</p>
+    </div>
+</div>

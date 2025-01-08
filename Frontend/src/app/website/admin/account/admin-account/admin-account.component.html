@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="admin-account-header">
+        <button (click)="toggleAddAdminAccountForm()">Thêm quản trị viên</button>
+
+        <!-- Bảng thông tin thêm quản trị viên -->
+        <div *ngIf="isAddAdminAccountFormVisible" class="add-admin-account-form">
+            <form (ngSubmit)="submitAddAdminAccountForm()" autocomplete="off">
+                <div class="add-admin-account-header">
+                    <h3>Thêm quản trị viên</h3>
+                    <button type="button" class="close-button" (click)="toggleAddAdminAccountForm()">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullName">Họ tên:</label>
+                    <input type="text" id="fullName" [(ngModel)]="newAdmin.fullName" name="fullName" required />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" [(ngModel)]="newAdmin.email" name="email" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adminName">Tên tài khoản:</label>
+                        <input type="text" id="adminName" [(ngModel)]="newAdmin.adminName" name="adminName" required 
+                            (ngModelChange)="checkAdminNameDuplicate($event)" #adminName="ngModel"/>
+                            <div *ngIf="adminName?.invalid && adminName?.touched" class="error-message">
+                                Vui lòng nhập đầy đủ thông tin.
+                            </div>
+    
+                            <div *ngIf="isDuplicateAdminName" class="warning-message">
+                                Chủ đề & thể loại này đã tồn tại.
+                            </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" [(ngModel)]="newAdmin.password" name="password" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Xác nhận mật khẩu:</label>
+                    <input type="password" id="confirmPassword" [(ngModel)]="newAdmin.confirmPassword" name="confirmPassword" required />
+                </div>
+                <button type="submit">Lưu quản trị viên</button>
+            </form>
+        </div>
+
+        <!-- Phân trang -->
+        <div class="pagination">
+            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+                <i class="bi bi-caret-left"></i>
+            </button>
+            <ng-container *ngFor="let page of visiblePages">
+                <button
+                    *ngIf="page !== '...'; else dots"
+                    [class.active]="page === currentPage"
+                    (click)="changePage(page)">
+                    {{ page }}
+                </button>
+                <ng-template #dots><span>...</span></ng-template>
+            </ng-container>
+            <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+                <i class="bi bi-caret-right"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="admin-account-table-container">
+        <table class="admin-account-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Họ tên</th>
+                    <th>Tên tài khoản</th>
+                    <th>Email</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let row of paginatedData">
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.fullName }}</td>
+                    <td>{{ row.adminName }}</td>
+                    <td>{{ row.email }}</td>
+                    <td [ngClass]="{'locked-status': true, 'locked': row.status === 'Đã khóa'}">
+                        {{ row.status || 'Không khóa' }}
+                    </td>
+                    <td>
+                        <button class="edit-btn">Sửa</button>
+                        <button class="delete-btn" (click)="showConfirmDialog()">Xóa</button>
+                            <div *ngIf="isConfirmDialogVisible" class="confirm-dialog">
+                                <div class="confirm-dialog-content">
+                                    <p>Bạn có chắc chắn muốn xóa?</p>
+                                    <button (click)="deleteItem()" class="confirm-btn">Xác nhận</button>
+                                    <button (click)="cancelDelete()" class="cancel-btn">Hủy</button>
+                                </div>
+                            </div>
+                        <button class="lock-btn" (click)="toggleLockStatus(row)">
+                            {{ row.status === 'Đã khóa' ? 'Mở khóa' : 'Khóa' }}
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

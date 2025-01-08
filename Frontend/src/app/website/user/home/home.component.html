@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="suggest">
+        <div class="suggest-text">
+            <h3>Gợi Ý Cho Bạn</h3>
+            <button class="refresh-btn"><i class="bi bi-arrow-repeat"></i>Làm mới</button>
+        </div>
+        <br>
+        <div class="suggest-item">
+            <div class="row" *ngFor="let row of suggestRows">
+                <div class="column" *ngFor="let song of row; let i = index">
+                    <img [src]="song.image" alt="song image">
+                    <i class="bi bi-play-fill play-icon"></i>
+                    <i class="bi" [ngClass]="song.isLiked ? 'bi-heart-fill' : 'bi-heart'" (click)="toggleLike(i)"></i>
+                    <i class="bi bi-list"></i>
+                    <div class="title">
+                        <h5>{{ song.title }}</h5>
+                        <p>{{ song.artist }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <br><br>
+    
+    
+    <div class="new">
+        <div class="new-text">
+            <h3>Mới Phát Hành</h3>
+            <a routerLink="/list-song">TẤT CẢ<i class="bi bi-chevron-right"></i></a>
+        </div>
+        <br>
+        <div class="new-item">
+            <div class="row" *ngFor="let row of newRows">
+                <div class="column" *ngFor="let song of row">
+                    <img [src]="song.image" alt="song image">
+                    <i class="bi bi-play-fill play-icon"></i>
+                    <div class="title">
+                        <h5>{{ song.title }}</h5>
+                        <p>{{ song.artist }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <br><br>
+    
+    <div class="chart">
+        <div class="left">
+            <a routerLink="/unichart">#unichart<i class="bi bi-play-circle-fill"></i></a>
+            <div class="unichart-song">
+
+            </div>
+        </div>
+        <div class="right">
+            
+            Nội dung bên phải (60%)
+        </div>
+      </div>
+</div>

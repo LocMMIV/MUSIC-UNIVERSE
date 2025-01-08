@@ -1,0 +1,387 @@
+.container-fluid {
+    width: 100%;
+    height: 90vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.song-header button {
+    background-color: skyblue;
+    color: black;
+    font-weight: 500;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.song-header button:hover {
+    background-color: deepskyblue;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.pagination button {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #21222D;
+    border-radius: 0;
+    background-color: #21222D;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: black;
+    border-color: black;
+}
+
+.pagination button.active {
+    background-color: #50d3ff48;
+    color: white;
+    border-color: #50d3ff;
+}
+
+.pagination button:disabled {
+    background-color: #21222D;
+    color: gray;
+    border-color: #21222D;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    color: white;
+}
+
+.song-table-container .pagination {
+    margin-top: auto;
+}
+
+.song-table-container {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.song-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    color: white;
+    text-align: center;
+}
+
+.song-table th,
+.song-table td {
+    padding: 10px 15px;
+    border: 1px solid #44475e;
+    vertical-align: middle;
+}
+
+.song-table thead tr {
+    background-color: black;
+    color: white;
+}
+
+.song-table tbody tr:nth-child(even) {
+    background-color: #21222D;
+}
+
+/* Cột ID */
+.song-table th:nth-child(1),
+.song-table td:nth-child(1) { width: 5%; }
+/* Cột Tên bài hát */
+.song-table th:nth-child(2),
+.song-table td:nth-child(2) { width: 24%; }
+/* Cột Hình ảnh */
+.song-table th:nth-child(3),
+.song-table td:nth-child(3) { width: 12%; }
+/* Cột Âm thanh */
+.song-table th:nth-child(4),
+.song-table td:nth-child(4) { width: 20%; }
+/* Cột Nghệ sĩ */
+.song-table th:nth-child(5),
+.song-table td:nth-child(5) { width: 24%; }
+/* Thao tác */
+.song-table th:nth-child(6),
+.song-table td:nth-child(6) { width: 15%; }
+
+
+.edit-btn,
+.delete-btn,
+.detail-btn {
+    padding: 5px 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    border: 1px solid #17a2b8;
+    background-color: #17a3b848;
+}
+
+.delete-btn {
+    border: 1px solid #dc3545;
+    background-color: #dc354644;
+}
+
+.detail-btn {
+    margin-top: 5px;
+    border: 1px solid #17b824;
+    background-color: #17b82442;
+}
+
+.edit-btn:hover {
+    border: 1px solid #138496;
+    background-color: #1384964b;
+}
+
+.delete-btn:hover {
+    border: 1px solid #c82333;
+    background-color: #c8233344;
+}
+
+.detail-btn:hover {
+    border: 1px solid #179613;
+    background-color: #17961338;
+}
+
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-volume-control-container,
+audio::-webkit-media-controls-download-button,
+audio::-webkit-media-controls-fullscreen-button {
+    display: none;
+}
+
+audio::-webkit-media-controls-timeline {
+    height: 4px;
+}
+
+audio {
+    width: 100%;
+    height: 40px;
+}
+
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+    color: #333;
+    font-size: 14px;
+}
+
+.add-song-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10000;
+}
+
+.add-song-form form {
+    background: #171821;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 700px;
+}
+
+.add-song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.add-song-header h3 {
+    margin: 0;
+    font-size: 25px;
+    color: white;
+}
+
+.add-song-header .close-button {
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+.add-song-header .close-button:hover {
+    color: red;
+    background: none;
+}
+
+.add-song-form .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.add-song-form .form-group {
+    flex: 1;
+}
+
+.add-song-form label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.add-song-form input[type="text"],
+.add-song-form input[type="file"],
+.add-song-form select {
+    background: none;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    transition: border-image 0.3s ease;
+    background-clip: padding-box;
+}
+
+select::-webkit-scrollbar {
+    width: 5px;
+}
+
+select::-webkit-scrollbar-thumb {
+    background-color: #888;
+    width: 5px;
+}
+
+select::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+select::-webkit-scrollbar-track {
+    background: white;
+}
+
+.add-song-form input[type="text"]:hover,
+.add-song-form input[type="file"]:hover,
+.add-song-form select:hover {
+    border-image: linear-gradient(to right, #4787ff, #32b6cd) 1;
+}
+
+.add-song-form input[type="text"]:focus,
+.add-song-form input[type="file"]:focus,
+.add-song-form select:focus {
+    border-image: linear-gradient(to right, #4787ff, #32b6cd) 1;
+    outline: none;
+}
+
+.add-song-form select {
+    height: 150px;
+}
+
+.add-song-form button {
+    border: 2px solid #00c3ff;
+    background-color: transparent;
+    color: #00c3ff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 30px;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-song-form button:hover {
+    background-color: #00c3ff;
+    color: white;
+}
+
+.confirm-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10000;
+}
+
+.confirm-dialog-content {
+    background: #171821;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 20%;
+    text-align: center;
+}
+
+.confirm-dialog-content p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.confirm-btn, .cancel-btn {
+    margin-right: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    border: 2px solid limegreen;
+    background-color: transparent;
+    color: limegreen;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 30px;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.confirm-btn:hover {
+    background-color: limegreen;
+    color: white;
+}
+
+.cancel-btn {
+    border: 2px solid crimson;
+    background-color: transparent;
+    color: crimson;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 30px;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: crimson;
+    color: white;
+}

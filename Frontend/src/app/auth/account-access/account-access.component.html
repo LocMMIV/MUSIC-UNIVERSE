@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="container" #container>
+        <!-- Login -->
+        <div class="form-container sign-in-container">
+            <form (ngSubmit)="login()" autocomplete="off">
+                <h1>ĐĂNG NHẬP</h1>
+                <div class="social-container">
+                    <a class="social"><i class="bi bi-facebook"></i></a>
+                    <a class="social"><i class="bi bi-google"></i></a>
+                </div>
+                <span>Sử dụng tài khoản của bạn</span>
+                <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required/>
+                <input type="password" placeholder="Mật khẩu" [(ngModel)]="password" name="password" required/>
+                <a class="forgot-password" routerLink="/forgot-password">Quên mật khẩu?</a>
+                <button>ĐĂNG NHẬP</button>
+            </form>
+        </div>
+
+        <!-- RRegister -->
+        <div class="form-container sign-up-container">
+            <form (ngSubmit)="register()" autocomplete="off">
+                <h1>ĐĂNG KÝ</h1>
+                <div class="social-container">
+                    <a class="social"><i class="bi bi-facebook"></i></a>
+                    <a class="social"><i class="bi bi-google"></i></a>
+                </div>
+                <span>Đăng ký tài khoản cho bạn</span>
+                <div class="form-row">
+                    <input type="text" placeholder="Họ và tên" [(ngModel)]="name" name="userName" required/>
+                    <input type="text" placeholder="CCCD" [(ngModel)]="cccd" name="cccd" required/>
+                </div>
+                <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required/>
+                <input type="password" placeholder="Mật khẩu" [(ngModel)]="password" name="password" required/>
+                <input type="password" placeholder="Nhập lại mật khẩu" [(ngModel)]="confirmPassword" name="confirmPassword" required/>
+                <button>Sign Up</button>
+            </form>
+        </div>
+
+        <!-- Overlay -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Chào bạn đến với MUSICAL UNIVERSE!</h1>
+                    <p>Đăng ký tài khoản và khám phá thế giới âm nhạc cùng chúng tôi.</p>
+                    <button class="ghost" (click)="onSignUpClick()">ĐĂNG KÝ</button>
+                </div>
+                <div class="overlay-panel overlay-left">
+                    <h1>Chào bạn trở lại MUSICAL UNIVERSE!</h1>
+                    <p>Đăng nhập để kết nối với chúng tôi và tận hưởng những bản nhạc yêu thích.</p>
+                    <button class="ghost" (click)="onSignInClick()">ĐĂNG NHẬP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

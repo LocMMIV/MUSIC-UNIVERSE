@@ -1,0 +1,206 @@
+.container-fluid {
+    padding: 50px;
+}
+
+.suggest-text,
+.new-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h3 {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.refresh-btn {
+    display: inline-flex;
+    color: black;
+    align-items: center;
+    padding: 5px 15px;
+    background-color: skyblue;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.refresh-btn i {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.refresh-btn:hover {
+    background-color: deepskyblue;
+}
+
+.suggest-item,
+.new-item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    display: flex;
+    width: 95%;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    padding: 8px;
+    position: relative;
+}
+
+.column:hover {
+    background-color: #21222D;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.play-icon,
+.bi-list,
+.bi-heart, .bi-heart-fill {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%); /* Căn giữa biểu tượng */
+    font-size: 30px;
+    color: white;
+    opacity: 0;  /* Ẩn biểu tượng ban đầu */
+    transition: opacity 0.3s ease;
+}
+
+.bi-list {
+    top: 50%;
+    left: 92%;
+    font-size: 15px;
+}
+
+.bi-heart, .bi-heart-fill {
+    top: 50%;
+    left: 80%;
+    font-size: 15px;
+}
+
+.column:hover .play-icon,
+.column:hover .bi-list,
+.column:hover .bi-heart, .column:hover .bi-heart-fill {
+    opacity: 1;  /* Hiển thị khi hover */
+}
+
+.bi-heart, .bi-heart-fill {
+    color: red;
+}
+
+img {
+    display: block;
+    width: 60px;
+    height: 60px;
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo và đầy khung */
+}
+
+.column:hover img {
+    filter: brightness(50%);  /* Giảm độ sáng khi hover */
+}
+
+
+.title h5, .title p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.title p {
+    color: gray;
+    font-size: 14px;
+}
+
+.new .new-text a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: gray;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.new .new-text a:hover {
+    color: deepskyblue;
+}
+
+.new .new-text a i {
+    margin-left: 5px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.new .new-text a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new .new-text a:hover i {
+    transform: translateX(5px);
+}
+
+.chart {
+    display: flex;
+    background-color: #21222D;
+    width: 100%;
+    height: 400px;
+}
+
+.chart .left {
+    flex: 0 0 40%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.chart .right {
+    flex: 0 0 60%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.chart .left a {
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 10s infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.chart .left a i {
+    margin-left: 10px;
+    color: white;
+    font-size: 25px;
+    background: none;
+    -webkit-background-clip: none;
+    -webkit-text-fill-color: white;
+    position: relative;
+}
