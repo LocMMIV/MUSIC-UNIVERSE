@@ -12,17 +12,19 @@ export class SongComponent implements OnInit {
   data = [
     {
       id: 1,
-      title: "Bài hát 1",
-      image: "assets/images/moloichoem.jpg", // Thay thế bằng URL ảnh thật
-      preview: "assets/audio/moloichoem.mp3", // Thay thế bằng đường dẫn thật tới tệp audio
-      artist: "Nghệ sĩ 1",
+      songName: "Mở Lối Cho Em",
+      image: "assets/images/moloichoem.jpg",
+      preview: "assets/audio/moloichoem.mp3",
+      artist: "Lương Quý Tuấn, Hữu Công",
+      genre: "Nhạc trẻ"
     },
     {
       id: 1,
-      title: "Bài hát 1",
-      image: "moloichoem.jpg", // Thay thế bằng URL ảnh thật
-      preview: "assets/audio/tuminhsuydien.mp3", // Thay thế bằng đường dẫn thật tới tệp audio
-      artist: "Nghệ sĩ 1",
+      songName: "Nỗi Nhớ Vô Hạn",
+      image: "assets/images/noinhovohan.jpg",
+      preview: "assets/audio/noinhovohan.mp3",
+      artist: "Thanh Hưng",
+      genre: "Nhạc trẻ"
     }, 
   ]
   
@@ -36,8 +38,6 @@ export class SongComponent implements OnInit {
     lyrics: string; 
   } = { name: '', artist: '', src: '', image: '', types: [], lyrics: '' }; // Dữ liệu bài hát mới
 
-  // Dữ liệu các thể loại chủ đề
-  types: string[] = ['Pop', 'Rock', 'Jazz', 'Hip Hop', 'Classical', 'R&B', 'EDM'];
   
 
   // Toggle bảng thêm bài hát
@@ -74,7 +74,34 @@ export class SongComponent implements OnInit {
     }
   }
 
-  
+  options = [
+    { value: 'pop', text: 'Pop' },
+    { value: 'rock', text: 'Rock' },
+    { value: 'jazz', text: 'Jazz' },
+    { value: 'classical', text: 'Classical' },
+    { value: 'hiphop', text: 'Hip-Hop' }
+  ]; // Danh sách các thể loại
+
+  selectedItems: { value: string; text: string }[] = []; // Các mục đã chọn
+
+  // Hàm xử lý khi chọn thể loại
+  onSelectChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+
+    if (selectedValue) {
+      const selectedOption = this.options.find(option => option.value === selectedValue);
+      if (selectedOption && !this.selectedItems.some(item => item.value === selectedValue)) {
+        this.selectedItems.push(selectedOption); // Thêm mục mới vào danh sách
+      }
+      selectElement.value = ''; // Reset lại select sau khi chọn
+    }
+  }
+
+  // Hàm xử lý khi xóa một thể loại
+  removeItem(item: { value: string; text: string }): void {
+    this.selectedItems = this.selectedItems.filter(selected => selected.value !== item.value);
+  }
 
 
   filteredData: any[] = []; // Dữ liệu đã lọc

@@ -1,0 +1,123 @@
+import { Component, OnInit } from '@angular/core';
+import { PaginationService } from '../../../services/pagination.service';
+import { NotificationService } from '../../../services/notification.service';
+
+@Component({
+  selector: 'app-genre',
+  templateUrl: './genre.component.html',
+  styleUrl: './genre.component.css'
+})
+export class GenreComponent implements OnInit {
+  data = [
+    { id: 1, genreName: 'Thể loại 1' },
+    { id: 2, genreName: 'Thể loại 2' },
+    { id: 3, genreName: 'Thể loại 3' },
+  ];
+  
+  isAddGenreFormVisible: boolean = false;
+  newGenre: { genreName: string } = { genreName: '' };
+  
+  // Kiểm tra trùng lặp
+  isDuplicateGenreName: boolean = false;
+  
+  // Hàm kiểm tra tên thể loại có trùng không
+  checkGenreNameDuplicate(genreName: string): void {
+    this.isDuplicateGenreName = this.data.some(genre => genre.genreName.toLowerCase() === genreName.toLowerCase());
+  }
+  
+  // Toggle form thêm thể loại
+  toggleAddGenreForm(): void {
+    this.isAddGenreFormVisible = !this.isAddGenreFormVisible;
+    if (!this.isAddGenreFormVisible) {
+      this.newGenre = {
+        genreName: '',
+      };
+    }
+  }
+  
+  // Xử lý khi gửi form
+  submitAddGenreForm(): void {
+    const { genreName } = this.newGenre;
+
+    // Kiểm tra dữ liệu đầu vào
+    if (this.isDuplicateGenreName) {
+      return;
+    } else if (!genreName.trim()) {
+      return;
+    } else {
+      // Thêm thể loại vào danh sách
+      this.data.push({
+        id: Date.now(),
+        genreName: genreName
+    });
+
+    this.notificationService.showMessage('Thêm thể loại thành công!', 'success');
+
+    this.newGenre = { genreName: '' };
+    this.toggleAddGenreForm();
+  }
+}
+  
+
+  filteredData: any[] = []; 
+  currentPage = 1;
+  paginatedData: any[] = []; 
+
+    // Biến điều khiển việc hiển thị hộp thoại xác nhận
+    isConfirmDialogVisible: boolean = false;
+
+    // Hiển thị hộp thoại xác nhận khi nhấn nút "Xóa"
+    showConfirmDialog(): void {
+      this.isConfirmDialogVisible = true;
+    }
+  
+    // Xử lý khi nhấn nút "Xác nhận"
+    deleteItem(): void {
+      // Thực hiện hành động xóa tại đây (ví dụ: xóa dữ liệu hoặc gọi API)
+      console.log('Đã xóa');
+      this.notificationService.showMessage('Xóa thể loại thành công!', 'success');
+  
+      // Ẩn hộp thoại sau khi xác nhận
+      this.isConfirmDialogVisible = false;
+    }
+  
+    // Xử lý khi nhấn nút "Hủy"
+    cancelDelete(): void {
+      // Ẩn hộp thoại khi người dùng chọn hủy
+      this.isConfirmDialogVisible = false;
+    }
+
+  constructor(
+    private paginationService: PaginationService,
+    private notificationService: NotificationService
+  ) {}
+
+  ngOnInit(): void {
+    this.filteredData = [...this.data];
+    this.updateTable();
+  }
+
+  updateTable(): void {
+    this.paginatedData = this.paginationService.paginate(this.filteredData, this.currentPage);
+  }
+
+  get visiblePages(): (number | string)[] {
+    return this.paginationService.getVisiblePages(this.currentPage, this.totalPages);
+  }
+
+  changePage(page: number | string): void {
+    if (typeof page === 'number' && page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updateTable();
+    }
+  }
+
+  filterBooks(): void {
+    this.currentPage = 1;
+    this.updateTable();
+  }
+
+  get totalPages(): number {
+    return this.paginationService.totalPages(this.filteredData);
+  }
+}

@@ -30,9 +30,9 @@
                             <div *ngIf="adminName?.invalid && adminName?.touched" class="error-message">
                                 Vui lòng nhập đầy đủ thông tin.
                             </div>
-    
+
                             <div *ngIf="isDuplicateAdminName" class="warning-message">
-                                Chủ đề & thể loại này đã tồn tại.
+                                Tên tài khoản đã tồn tại.
                             </div>
                     </div>
                 </div>
@@ -84,13 +84,13 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let row of paginatedData">
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.fullName }}</td>
-                    <td>{{ row.adminName }}</td>
-                    <td>{{ row.email }}</td>
-                    <td [ngClass]="{'locked-status': true, 'locked': row.status === 'Đã khóa'}">
-                        {{ row.status || 'Không khóa' }}
+                <tr *ngFor="let adminaccount of paginatedData">
+                    <td>{{ adminaccount.id }}</td>
+                    <td>{{ adminaccount.fullName }}</td>
+                    <td>{{ adminaccount.adminName }}</td>
+                    <td>{{ adminaccount.email }}</td>
+                    <td [ngClass]="{'locked-status': true, 'locked': adminaccount.status === 'Đã khóa'}">
+                        {{ adminaccount.status || 'Không khóa' }}
                     </td>
                     <td>
                         <button class="edit-btn">Sửa</button>
@@ -102,8 +102,8 @@
                                     <button (click)="cancelDelete()" class="cancel-btn">Hủy</button>
                                 </div>
                             </div>
-                        <button class="lock-btn" (click)="toggleLockStatus(row)">
-                            {{ row.status === 'Đã khóa' ? 'Mở khóa' : 'Khóa' }}
+                        <button class="lock-btn" (click)="toggleLockStatus(adminaccount)">
+                            {{ adminaccount.status === 'Đã khóa' ? 'Mở khóa' : 'Khóa' }}
                         </button>
                     </td>
                 </tr>

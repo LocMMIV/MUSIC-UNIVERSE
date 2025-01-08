@@ -12,9 +12,9 @@ import { AdminAccountComponent } from './account/admin-account/admin-account.com
 import { UserAcccountComponent } from './account/user-acccount/user-acccount.component';
 import { RequestComponent } from './request/request.component';
 import { ContactComponent } from './contact/contact.component';
-import { TypeComponent } from './type/type.component';
 import { DetailContactComponent } from './contact/detail-contact/detail-contact.component';
 import { DetailSongComponent } from './song/detail-song/detail-song.component';
+import { GenreComponent } from './genre/genre.component';
 
 
 @NgModule({
@@ -28,9 +28,9 @@ import { DetailSongComponent } from './song/detail-song/detail-song.component';
     UserAcccountComponent,
     RequestComponent,
     ContactComponent,
-    TypeComponent,
     DetailContactComponent,
-    DetailSongComponent
+    DetailSongComponent,
+    GenreComponent
   ],
   imports: [
     CommonModule,

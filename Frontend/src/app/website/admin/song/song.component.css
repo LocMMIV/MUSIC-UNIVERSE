@@ -105,24 +105,28 @@
     background-color: #21222D;
 }
 
-/* Cột ID */
+/* ID */
 .song-table th:nth-child(1),
 .song-table td:nth-child(1) { width: 5%; }
-/* Cột Tên bài hát */
+/* Bài hát */
 .song-table th:nth-child(2),
-.song-table td:nth-child(2) { width: 24%; }
-/* Cột Hình ảnh */
+.song-table td:nth-child(2) { width: 20%; }
+/* Hình ảnh */
 .song-table th:nth-child(3),
-.song-table td:nth-child(3) { width: 12%; }
-/* Cột Âm thanh */
+.song-table td:nth-child(3) { width: 10%; }
+/* Âm thanh */
 .song-table th:nth-child(4),
 .song-table td:nth-child(4) { width: 20%; }
-/* Cột Nghệ sĩ */
+/* Thể loại */
 .song-table th:nth-child(5),
-.song-table td:nth-child(5) { width: 24%; }
-/* Thao tác */
+.song-table td:nth-child(5) { width: 20%; }
+/* Nghệ sĩ */
 .song-table th:nth-child(6),
 .song-table td:nth-child(6) { width: 15%; }
+/* Thao tác */
+.song-table th:nth-child(7),
+.song-table td:nth-child(7) { width: 20%; }
+
 
 
 .edit-btn,
@@ -294,10 +298,6 @@ select::-webkit-scrollbar-track {
     outline: none;
 }
 
-.add-song-form select {
-    height: 150px;
-}
-
 .add-song-form button {
     border: 2px solid #00c3ff;
     background-color: transparent;
@@ -384,4 +384,23 @@ select::-webkit-scrollbar-track {
 .cancel-btn:hover {
     background-color: crimson;
     color: white;
+}
+
+.selected-items {
+    display: inline-block;
+}
+
+.selected-items .selected-btn {
+    display: inline-block;
+    text-transform: none;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.selected-items .selected-btn:hover {
+    background-color: deepskyblue;
 }

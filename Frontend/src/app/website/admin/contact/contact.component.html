@@ -30,20 +30,20 @@
                     <th>Họ tên</th>
                     <th>Tên tài khoản</th>
                     <th>Email</th>
-                    <th>Yêu cầu</th>
+                    <th>Hỗ trợ</th>
                     <th>Trạng thái</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let row of paginatedData">
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.fullName }}</td>
-                    <td>{{ row.userName }}</td>
-                    <td>{{ row.email }}</td>
-                    <td>{{ row.request }}</td>
-                    <td [ngClass]="{'resolved-status': true, 'resolved': row.status === 'Giải quyết'}">
-                        {{ row.status || 'Chưa giải quyết' }}
+                <tr *ngFor="let contact of paginatedData">
+                    <td>{{ contact.id }}</td>
+                    <td>{{ contact.fullName }}</td>
+                    <td>{{ contact.userName }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.request }}</td>
+                    <td [ngClass]="{'resolved-status': true, 'resolved': contact.status === 'Giải quyết'}">
+                        {{ contact.status || 'Chưa giải quyết' }}
                     </td>
                     <td>
                         <button class="delete-btn" (click)="showConfirmDialog()">Xóa</button>
@@ -54,8 +54,8 @@
                                     <button (click)="cancelDelete()" class="cancel-btn">Hủy</button>
                                 </div>
                             </div>
-                        <button class="resolve-btn" (click)="toggleLockStatus(row)">
-                        {{ row.status === 'Giải quyết' ? 'Hủy xác nhận' : 'Xác nhận' }}
+                        <button class="resolve-btn" (click)="toggleLockStatus(contact)">
+                        {{ contact.status === 'Giải quyết' ? 'Hủy xác nhận' : 'Xác nhận' }}
                         </button>
                         <button class="detail-btn" (click)="navigateToDetailContact()">Xem chi tiết</button>
                     </td>

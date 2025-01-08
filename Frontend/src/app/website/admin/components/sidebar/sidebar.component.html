@@ -5,7 +5,7 @@
 <ul class="menu">
     <li class="main-menu"><a routerLink="/dashboard" routerLinkActive="active" (click)="selectMenu('other')"><i class="bi bi-graph-up"></i>Thống kê</a></li>
     <li class="main-menu"><a routerLink="/song" routerLinkActive="active" (click)="selectMenu('other')"><i class="bi bi-music-note-beamed"></i>Bài hát</a></li>
-    <li class="main-menu"><a routerLink="/type" routerLinkActive="active" (click)="selectMenu('other')"><i class="bi bi-tags"></i>Chủ đề & thể loại</a></li>
+    <li class="main-menu"><a routerLink="/genre" routerLinkActive="active" (click)="selectMenu('other')"><i class="bi bi-music-note-list"></i>Thể loại</a></li>
     <li class="main-menu dropdown" [class.active]="dropdownActive">
         <a (click)="toggleDropdown()"><i class="bi bi-person-gear"></i>Tài khoản</a>
         <ul class="dropdown-content" [ngClass]="{'show': dropdownOpen}">

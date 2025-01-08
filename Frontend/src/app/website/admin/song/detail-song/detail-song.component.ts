@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 })
 export class DetailSongComponent implements OnInit {
   song = {
-    id: '001',
-    songName: 'Hãy trao cho anh',
-    image: 'assets/images/moloichoem.jpg',  // Đường dẫn hình ảnh
-    audio: 'assets/audio/moloichoem.mp3',  // Đường dẫn âm thanh
-    artist: 'Sơn Tùng M-TP',
+    songName: 'Mở Lối Cho Em',
+    image: 'assets/images/moloichoem.jpg',
+    audio: 'assets/audio/moloichoem.mp3',
+    artist: 'Lương Quý Tuấn, Hữu Công',
+    genre: 'Nhạc trẻ',
     lyric: `[Verse 1]
 
 Cạn lòng vì nhau như thế

@@ -35,13 +35,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let row of paginatedData">
-                    <td>{{ row.id }}</td>
-                    <td>{{ row.fullName }}</td>
-                    <td>{{ row.userName }}</td>
-                    <td>{{ row.email }}</td>
-                    <td [ngClass]="{'locked-status': true, 'locked': row.status === 'Đã khóa'}">
-                        {{ row.status || 'Không khóa' }}
+                <tr *ngFor="let useraccount of paginatedData">
+                    <td>{{ useraccount.id }}</td>
+                    <td>{{ useraccount.fullName }}</td>
+                    <td>{{ useraccount.userName }}</td>
+                    <td>{{ useraccount.email }}</td>
+                    <td [ngClass]="{'locked-status': true, 'locked': useraccount.status === 'Đã khóa'}">
+                        {{ useraccount.status || 'Không khóa' }}
                     </td>
                     <td>
                         <button class="delete-btn" (click)="showConfirmDialog()">Xóa</button>
@@ -52,8 +52,8 @@
                                     <button (click)="cancelDelete()" class="cancel-btn">Hủy</button>
                                 </div>
                             </div>
-                        <button class="lock-btn" (click)="toggleLockStatus(row)">
-                        {{ row.status === 'Đã khóa' ? 'Mở khóa' : 'Khóa' }}
+                        <button class="lock-btn" (click)="toggleLockStatus(useraccount)">
+                        {{ useraccount.status === 'Đã khóa' ? 'Mở khóa' : 'Khóa' }}
                         </button>
                     </td>
                 </tr>
