@@ -59,19 +59,25 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let genre of paginatedData">
+                <tr *ngFor="let genre of paginatedData; let i = index">
                     <td>{{ genre.id }}</td>
                     <td>{{ genre.genreName }}</td>
                     <td>
                         <button class="edit-btn">Sửa</button>
-                        <button class="delete-btn" (click)="showConfirmDialog()">Xóa</button>
-                            <div *ngIf="isConfirmDialogVisible" class="confirm-dialog">
-                                <div class="confirm-dialog-content">
-                                    <p>Bạn có chắc chắn muốn xóa?</p>
-                                    <button (click)="deleteItem()" class="confirm-btn">Xác nhận</button>
-                                    <button (click)="cancelDelete()" class="cancel-btn">Hủy</button>
-                                </div>
+                        <button class="delete-btn" (click)="openConfirmDeleteDialog(i)">Xóa</button>
+                        <div *ngIf="ConfirmdeleteService.getSelectedIndex() !== null" class="confirm-delete-dialog">
+                            <div class="confirm-delete-dialog-content">
+                                <h3>Bạn có chắc chắn muốn xóa?</h3>
+                                <br/>
+                                <h5>
+                                    <span>ID:</span> {{ paginatedData[ConfirmdeleteService.getSelectedIndex()!]?.id }} <span style="color: yellow;">-- </span>
+                                    <span>Thể loại:</span> {{ paginatedData[ConfirmdeleteService.getSelectedIndex()!]?.genreName }}
+                                </h5>
+                                <br/>
+                                <button (click)="deleteConfirmDeleteDialog('accepted')" class="confirm-btn">Xác nhận</button>
+                                <button (click)="closeConfirmDeleteDialog()" class="cancel-btn">Hủy</button>
                             </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,6 +22,23 @@ export class SidebarComponent {
       this.dropdownActive = false; // Bỏ active khi chọn menu ngoài dropdown
       this.dropdownOpen = false;   // Đóng menu dropdown khi chọn menu ngoài dropdown
     }
+  }
+
+  isLoading = false;
+
+  constructor(private router: Router) {
+    // Theo dõi trạng thái router
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.isLoading = true; // Bắt đầu loading
+      } else if (event instanceof NavigationEnd) {
+        this.isLoading = false; // Kết thúc loading
+      }
+    });
+  }
+
+  onMenuClick() {
+    this.isLoading = true; // Kích hoạt hiệu ứng loading
   }
 }
 

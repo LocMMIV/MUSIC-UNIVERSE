@@ -19,11 +19,13 @@
                     <span class="music-seekbar">{{ formatTime(audioDuration - currentTime) }}</span>
                 </div>
             </div>
-            <p><span class="span-text">Bài hát:</span> {{ song.songName }}</p>
-            <p><span class="span-text">Nghệ sĩ:</span> {{ song.artist }}</p>
-            <p><span class="span-text">Thể loại:</span> {{ song.genre }}</p>
-            <p><span class="span-text">Lyric:</span></p>
+            <div class="content">
+                <p><span class="span-text">Bài hát:</span> {{ song.songName }}</p>
+                <p><span class="span-text">Nghệ sĩ:</span> {{ song.artist }}</p>
+                <p><span class="span-text">Thể loại:</span> {{ song.genre }}</p>
+                <p><span class="span-text">Lời bài hát:</span></p>
             <p [innerHTML]="song.lyric"></p>
+            </div>
         </div>
     </div>
 </div>

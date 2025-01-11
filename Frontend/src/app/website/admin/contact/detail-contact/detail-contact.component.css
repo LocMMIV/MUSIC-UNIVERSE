@@ -16,7 +16,7 @@
 }
 
 .detail-contact-btn {
-    margin-top: 20px;
+    margin: 20px 0px;
 }
 
 .detail-contact-btn button {
@@ -32,7 +32,7 @@
     font-size: 15px;
     font-weight: bold;
     padding: 10px 30px;
-    margin-top: 15px;
+    margin: 5px 0px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -50,7 +50,7 @@
     font-size: 15px;
     font-weight: bold;
     padding: 10px 30px;
-    margin-top: 15px;
+    margin: 5px 0px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: background-color 0.3s ease, transform 0.3s ease;

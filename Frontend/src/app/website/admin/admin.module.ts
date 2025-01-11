@@ -30,7 +30,7 @@ import { GenreComponent } from './genre/genre.component';
     ContactComponent,
     DetailContactComponent,
     DetailSongComponent,
-    GenreComponent
+    GenreComponent,
   ],
   imports: [
     CommonModule,

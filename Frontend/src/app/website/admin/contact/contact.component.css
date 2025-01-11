@@ -10,7 +10,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 20px;
+    margin: 5px 0px;
     gap: 5px;
 }
 
@@ -54,7 +54,7 @@
 
 .contact-table-container {
     width: 100%;
-    margin-top: 20px;
+    margin: 20px 0px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -63,7 +63,6 @@
 .contact-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 10px;
     color: white;
     text-align: center;
 }
@@ -113,7 +112,7 @@
     cursor: pointer;
     color: white;
     font-size: 14px;
-    margin-right: 5px;
+    margin: 2.5px;
 }
 
 .delete-btn {
@@ -127,7 +126,6 @@
 }
 
 .detail-btn {
-    margin-top: 5px;
     border: 1px solid #17b824;
     background-color: #17b82442;
 }
@@ -157,7 +155,7 @@
     font-weight: 500;
 }
 
-.confirm-dialog {
+.confirm-delete-dialog {
     position: fixed;
     top: 0;
     left: 0;
@@ -171,36 +169,54 @@
     z-index: 10000;
 }
 
-.confirm-dialog-content {
+.confirm-delete-dialog-content {
     background: #171821;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 20%;
+    width: 30%;
     text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.confirm-dialog-content p {
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.confirm-delete-dialog-content h3 {
+    font-size: 25px;
+    font-weight: 500;
+}
+.confirm-delete-dialog-content h5 {
     font-size: 20px;
+    font-weight: 400;
+}
+
+.confirm-delete-dialog-content h5 span {
+    color: deepskyblue;
     font-weight: 500;
 }
 
 .confirm-btn, .cancel-btn {
-    margin-right: 10px;
-    padding: 10px 20px;
+    padding: 7px 13px;
     cursor: pointer;
+    margin: 0 5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: transparent;
 }
 
 .confirm-btn {
     border: 2px solid limegreen;
-    background-color: transparent;
     color: limegreen;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 30px;
-    margin-top: 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -211,14 +227,7 @@
 
 .cancel-btn {
     border: 2px solid crimson;
-    background-color: transparent;
     color: crimson;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 30px;
-    margin-top: 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 

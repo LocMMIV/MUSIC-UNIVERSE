@@ -12,39 +12,41 @@
                     </button>
                 </div>
 
-                <div class="form-group">
-                    <label for="fullName">Họ tên:</label>
-                    <input type="text" id="fullName" [(ngModel)]="newAdmin.fullName" name="fullName" required />
-                </div>
-
                 <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Họ tên:</label>
+                        <input type="text" id="fullName" [(ngModel)]="newAdmin.fullName" name="fullName" required />
+                    </div>
+
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" [(ngModel)]="newAdmin.email" name="email" required />
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adminName">Tên tài khoản:</label>
+                    <input type="text" id="adminName" [(ngModel)]="newAdmin.adminName" name="adminName" required 
+                        (ngModelChange)="checkAdminNameDuplicate($event)" #adminName="ngModel"/>
+                        <div *ngIf="adminName?.invalid && adminName?.touched" class="error-message">
+                            Vui lòng nhập đầy đủ thông tin.
+                        </div>
+
+                        <div *ngIf="isDuplicateAdminName" class="warning-message">
+                            Tên tài khoản đã tồn tại.
+                        </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Mật khẩu:</label>
+                        <input type="password" id="password" [(ngModel)]="newAdmin.password" name="password" required />
+                    </div>
 
                     <div class="form-group">
-                        <label for="adminName">Tên tài khoản:</label>
-                        <input type="text" id="adminName" [(ngModel)]="newAdmin.adminName" name="adminName" required 
-                            (ngModelChange)="checkAdminNameDuplicate($event)" #adminName="ngModel"/>
-                            <div *ngIf="adminName?.invalid && adminName?.touched" class="error-message">
-                                Vui lòng nhập đầy đủ thông tin.
-                            </div>
-
-                            <div *ngIf="isDuplicateAdminName" class="warning-message">
-                                Tên tài khoản đã tồn tại.
-                            </div>
+                        <label for="confirmPassword">Xác nhận mật khẩu:</label>
+                        <input type="password" id="confirmPassword" [(ngModel)]="newAdmin.confirmPassword" name="confirmPassword" required />
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Mật khẩu:</label>
-                    <input type="password" id="password" [(ngModel)]="newAdmin.password" name="password" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Xác nhận mật khẩu:</label>
-                    <input type="password" id="confirmPassword" [(ngModel)]="newAdmin.confirmPassword" name="confirmPassword" required />
                 </div>
                 <button type="submit">Lưu quản trị viên</button>
             </form>
@@ -84,7 +86,7 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let adminaccount of paginatedData">
+                <tr *ngFor="let adminaccount of paginatedData; let i = index">
                     <td>{{ adminaccount.id }}</td>
                     <td>{{ adminaccount.fullName }}</td>
                     <td>{{ adminaccount.adminName }}</td>
@@ -94,14 +96,20 @@
                     </td>
                     <td>
                         <button class="edit-btn">Sửa</button>
-                        <button class="delete-btn" (click)="showConfirmDialog()">Xóa</button>
-                            <div *ngIf="isConfirmDialogVisible" class="confirm-dialog">
-                                <div class="confirm-dialog-content">
-                                    <p>Bạn có chắc chắn muốn xóa?</p>
-                                    <button (click)="deleteItem()" class="confirm-btn">Xác nhận</button>
-                                    <button (click)="cancelDelete()" class="cancel-btn">Hủy</button>
-                                </div>
+                        <button class="delete-btn" (click)="openConfirmDeleteDialog(i)">Xóa</button>
+                        <div *ngIf="ConfirmdeleteService.getSelectedIndex() !== null" class="confirm-delete-dialog">
+                            <div class="confirm-delete-dialog-content">
+                                <h3>Bạn có chắc chắn muốn xóa?</h3>
+                                <br/>
+                                <h5>
+                                    <span>ID:</span> {{ paginatedData[ConfirmdeleteService.getSelectedIndex()!]?.id }} <span style="color: yellow;">-- </span>
+                                    <span>Email:</span> {{ paginatedData[ConfirmdeleteService.getSelectedIndex()!]?.email }}
+                                </h5>
+                                <br/>
+                                <button (click)="deleteConfirmDeleteDialog('accepted')" class="confirm-btn">Xác nhận</button>
+                                <button (click)="closeConfirmDeleteDialog()" class="cancel-btn">Hủy</button>
                             </div>
+                        </div>
                         <button class="lock-btn" (click)="toggleLockStatus(adminaccount)">
                             {{ adminaccount.status === 'Đã khóa' ? 'Mở khóa' : 'Khóa' }}
                         </button>

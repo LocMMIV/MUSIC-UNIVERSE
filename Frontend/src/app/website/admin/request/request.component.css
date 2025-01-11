@@ -10,7 +10,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 20px;
+    margin: 5px 0px;
     gap: 5px;
 }
 
@@ -54,7 +54,7 @@
 
 .request-table-container {
     width: 100%;
-    margin-top: 20px;
+    margin: 20px 0px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -63,7 +63,6 @@
 .request-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 10px;
     color: white;
     text-align: center;
 }
@@ -101,26 +100,33 @@
 .request-table td:nth-child(5) { width: 20%; }
 
 .request-processing-btn,
-button.accepted {
+.delete-btn {
     padding: 5px 10px;
     cursor: pointer;
     color: white;
     font-size: 14px;
-    margin-right: 5px;
+    margin: 2.5px;
 }
 
-.request-processing-btn,
-button.accepted {
+.request-processing-btn {
     border: 1px solid #17b824;
     background-color: #17b82442;
 }
 
-.request-processing-btn:hover,
-button.accepted:hover {
+.request-processing-btn:hover {
     border: 1px solid #179613;
     background-color: #17961338;
 }
 
+.delete-btn {
+    border: 1px solid #dc3545;
+    background-color: #dc354644;
+}
+
+.delete-btn:hover {
+    border: 1px solid #c82333;
+    background-color: #c8233344;
+}
 .confirm-dialog {
     position: fixed;
     top: 0;
@@ -155,16 +161,176 @@ button.accepted:hover {
     cursor: pointer;
 }
 
-.confirm-btn {
+.accepted-row {
+    color: lime;
+}
+
+.rejected-row {
+    color: red;
+}
+
+.request-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10000;
+}
+
+.request-form {
+    background: #171821;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.request-form h3 {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.request-form span {
+    color: deepskyblue;
+}
+
+.request-form p {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.accepted-btn, .rejected-btn, .close-btn {
+    margin-right: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.accepted-btn {
     border: 2px solid limegreen;
     background-color: transparent;
     color: limegreen;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.accepted-btn:hover {
+    background-color: limegreen;
+    color: white;
+}
+
+.rejected-btn {
+    border: 2px solid crimson;
+    background-color: transparent;
+    color: crimson;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.rejected-btn:hover {
+    background-color: crimson;
+    color: white;
+}
+
+.close-btn {
+    border: 2px solid gold;
+    background-color: transparent;
+    color: gold;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: gold;
+    color: white;
+}
+
+.confirm-delete-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10000;
+}
+
+.confirm-delete-dialog-content {
+    background: #171821;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.confirm-delete-dialog-content h3 {
+    font-size: 25px;
+    font-weight: 500;
+}
+.confirm-delete-dialog-content h5 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.confirm-delete-dialog-content h5 span {
+    color: deepskyblue;
+    font-weight: 500;
+}
+
+.confirm-btn, .cancel-btn {
+    padding: 7px 13px;
+    cursor: pointer;
+    margin: 0 5px;
     font-size: 15px;
     font-weight: bold;
-    padding: 10px 30px;
-    margin-top: 15px;
-    letter-spacing: 1px;
     text-transform: uppercase;
+    background-color: transparent;
+}
+
+.confirm-btn {
+    border: 2px solid limegreen;
+    color: limegreen;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -175,14 +341,7 @@ button.accepted:hover {
 
 .cancel-btn {
     border: 2px solid crimson;
-    background-color: transparent;
     color: crimson;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 30px;
-    margin-top: 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -190,4 +349,3 @@ button.accepted:hover {
     background-color: crimson;
     color: white;
 }
-

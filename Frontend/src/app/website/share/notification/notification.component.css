@@ -4,7 +4,7 @@
     right: 20px;
     max-height: calc(3 * 60px);
     overflow: hidden;
-    z-index: 10000;
+    z-index: 999999999999999999999999999999999999999;
 }
 
 .notification {
@@ -30,7 +30,7 @@
 }
 
 .notification.warning {
-    background-color: yellow;
+    background-color: gold;
 }
 
 .notification span {

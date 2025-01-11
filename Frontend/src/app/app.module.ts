@@ -6,12 +6,17 @@ import { AppComponent } from './app.component';
 import { AdminModule } from './website/admin/admin.module';
 import { UserModule } from './website/user/user.module';
 import { AuthModule } from './auth/auth.module';
-import { NotificationComponent } from './website/notification/notification.component';
+import { NotificationComponent } from './website/share/notification/notification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotificationComponent,
+  ],
+
+  exports: [
+    AdminModule,
+    UserModule,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationService } from '../../../services/pagination.service';
+import { NotificationService } from '../../../services/notification.service';
+import { ConfirmdeleteService } from '../../../services/confirmdelete.service';
 
 @Component({
   selector: 'app-request',
@@ -12,14 +14,53 @@ export class RequestComponent implements OnInit {
     { id: '987', fullName: 'Trần Thị B', userName: 'tranthib', email: 'b@example.com', },
   ];
 
+  selectedRequestIndex: number | null = null;
+
+  openForm(index: number) {
+    this.selectedRequestIndex = index;
+  }
   
+  closeForm() {
+      this.selectedRequestIndex = null;
+  }
+
+  processRequest(action: 'accepted' | 'rejected') {
+      if (this.selectedRequestIndex !== null) {
+          this.paginatedData[this.selectedRequestIndex].status = action;
+
+          const fullName = this.paginatedData[this.selectedRequestIndex].fullName;
+
+          if (action === 'accepted') {
+              this.notificationService.showMessage(`Yêu cầu của ${fullName} đã được chấp nhận.`, 'success');
+          } else if (action === 'rejected') {
+              this.notificationService.showMessage(`Yêu cầu của ${fullName} đã bị từ chối.`, 'error');
+          }
+
+          this.closeForm();
+      }
+  }
 
   filteredData: any[] = [];
   currentPage = 1;
   paginatedData: any[] = [];
 
+  openConfirmDeleteDialog(index: number) {
+    this.ConfirmdeleteService.openDialog(index);
+  }
+
+  closeConfirmDeleteDialog() {
+    this.ConfirmdeleteService.closeDialog();
+  }
+
+  deleteConfirmDeleteDialog(action: 'accepted') {
+    const customMessage = '{{name}} đã được xóa!';
+    this.ConfirmdeleteService.confirmDelete(this.paginatedData, action, 'id', 'email', customMessage);
+  }
+
   constructor(
-    private paginationService: PaginationService
+    private paginationService: PaginationService,
+    private notificationService: NotificationService,
+    public ConfirmdeleteService: ConfirmdeleteService
   ) {}
 
   ngOnInit(): void {

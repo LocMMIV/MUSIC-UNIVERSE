@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationService } from '../../../services/pagination.service';
 import { NotificationService } from '../../../services/notification.service';
+import { ConfirmdeleteService } from '../../../services/confirmdelete.service';
 
 @Component({
   selector: 'app-genre',
   templateUrl: './genre.component.html',
-  styleUrl: './genre.component.css'
+  styleUrls: ['./genre.component.css']
 })
 export class GenreComponent implements OnInit {
   data = [
@@ -63,33 +64,23 @@ export class GenreComponent implements OnInit {
   currentPage = 1;
   paginatedData: any[] = []; 
 
-    // Biến điều khiển việc hiển thị hộp thoại xác nhận
-    isConfirmDialogVisible: boolean = false;
+  openConfirmDeleteDialog(index: number) {
+    this.ConfirmdeleteService.openDialog(index);
+  }
 
-    // Hiển thị hộp thoại xác nhận khi nhấn nút "Xóa"
-    showConfirmDialog(): void {
-      this.isConfirmDialogVisible = true;
-    }
-  
-    // Xử lý khi nhấn nút "Xác nhận"
-    deleteItem(): void {
-      // Thực hiện hành động xóa tại đây (ví dụ: xóa dữ liệu hoặc gọi API)
-      console.log('Đã xóa');
-      this.notificationService.showMessage('Xóa thể loại thành công!', 'success');
-  
-      // Ẩn hộp thoại sau khi xác nhận
-      this.isConfirmDialogVisible = false;
-    }
-  
-    // Xử lý khi nhấn nút "Hủy"
-    cancelDelete(): void {
-      // Ẩn hộp thoại khi người dùng chọn hủy
-      this.isConfirmDialogVisible = false;
-    }
+  closeConfirmDeleteDialog() {
+    this.ConfirmdeleteService.closeDialog();
+  }
+
+  deleteConfirmDeleteDialog(action: 'accepted') {
+    const customMessage = '{{name}} đã được xóa!';
+    this.ConfirmdeleteService.confirmDelete(this.paginatedData, action, 'id', 'genreName', customMessage);
+  }
 
   constructor(
     private paginationService: PaginationService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public ConfirmdeleteService: ConfirmdeleteService
   ) {}
 
   ngOnInit(): void {
@@ -120,4 +111,5 @@ export class GenreComponent implements OnInit {
   get totalPages(): number {
     return this.paginationService.totalPages(this.filteredData);
   }
+  
 }

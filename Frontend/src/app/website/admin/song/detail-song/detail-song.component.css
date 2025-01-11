@@ -32,7 +32,6 @@ img {
     width: 50%;
     background: #21222D;
     padding: 10px;
-    margin-bottom: 20px;
 }
 
 .music-btn {
@@ -75,6 +74,10 @@ img {
     outline: none;
 }
 
+.content {
+    margin: 20px 0px;
+}
+
 .detail-song p {
     font-size: 20px;
 }
@@ -87,6 +90,7 @@ img {
 .detail-song-btn {
     display: flex;
     flex-direction: column;
+    margin: 10px 0px;
 }
 
 .detail-song-btn button {
@@ -101,7 +105,7 @@ img {
     font-size: 15px;
     font-weight: bold;
     padding: 10px 30px;
-    margin-top: 20px;
+    margin: 5px 0px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -119,7 +123,7 @@ img {
     font-size: 15px;
     font-weight: bold;
     padding: 10px 30px;
-    margin-top: 10px;
+    margin: 5px 0px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: background-color 0.3s ease, transform 0.3s ease;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PaginationService } from '../../../services/pagination.service';
 import { NotificationService } from '../../../services/notification.service';
+import { ConfirmdeleteService } from '../../../services/confirmdelete.service';
 
 @Component({
   selector: 'app-contact',
@@ -28,33 +29,23 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  // Biến điều khiển việc hiển thị hộp thoại xác nhận
-  isConfirmDialogVisible: boolean = false;
-
-  // Hiển thị hộp thoại xác nhận khi nhấn nút "Xóa"
-  showConfirmDialog(): void {
-    this.isConfirmDialogVisible = true;
+  openConfirmDeleteDialog(index: number) {
+    this.ConfirmdeleteService.openDialog(index);
   }
 
-  // Xử lý khi nhấn nút "Xác nhận"
-  deleteItem(): void {
-    // Thực hiện hành động xóa tại đây (ví dụ: xóa dữ liệu hoặc gọi API)
-    console.log('Đã xóa');
-    this.notificationService.showMessage('Đã xóa thành công!', 'success');
-
-    // Ẩn hộp thoại sau khi xác nhận
-    this.isConfirmDialogVisible = false;
+  closeConfirmDeleteDialog() {
+    this.ConfirmdeleteService.closeDialog();
   }
 
-  // Xử lý khi nhấn nút "Hủy"
-  cancelDelete(): void {
-    // Ẩn hộp thoại khi người dùng chọn hủy
-    this.isConfirmDialogVisible = false;
+  deleteConfirmDeleteDialog(action: 'accepted') {
+    const customMessage = '{{name}} đã được xóa!';
+    this.ConfirmdeleteService.confirmDelete(this.paginatedData, action, 'id', 'genreName', customMessage);
   }
 
   constructor(
     private paginationService: PaginationService,
     private notificationService: NotificationService,
+    public ConfirmdeleteService: ConfirmdeleteService,
     private router: Router
   ) {}
 

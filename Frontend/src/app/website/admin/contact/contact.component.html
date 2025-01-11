@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let contact of paginatedData">
+                <tr *ngFor="let contact of paginatedData; let i = index">
                     <td>{{ contact.id }}</td>
                     <td>{{ contact.fullName }}</td>
                     <td>{{ contact.userName }}</td>
@@ -46,14 +46,20 @@
                         {{ contact.status || 'Chưa giải quyết' }}
                     </td>
                     <td>
-                        <button class="delete-btn" (click)="showConfirmDialog()">Xóa</button>
-                            <div *ngIf="isConfirmDialogVisible" class="confirm-dialog">
-                                <div class="confirm-dialog-content">
-                                    <p>Bạn có chắc chắn muốn xóa?</p>
-                                    <button (click)="deleteItem()" class="confirm-btn">Xác nhận</button>
-                                    <button (click)="cancelDelete()" class="cancel-btn">Hủy</button>
-                                </div>
+                        <button class="delete-btn" (click)="openConfirmDeleteDialog(i)">Xóa</button>
+                        <div *ngIf="ConfirmdeleteService.getSelectedIndex() !== null" class="confirm-delete-dialog">
+                            <div class="confirm-delete-dialog-content">
+                                <h3>Bạn có chắc chắn muốn xóa?</h3>
+                                <br/>
+                                <h5>
+                                    <span>ID:</span> {{ paginatedData[ConfirmdeleteService.getSelectedIndex()!]?.id }} <span style="color: yellow;">-- </span>
+                                    <span>Email:</span> {{ paginatedData[ConfirmdeleteService.getSelectedIndex()!]?.email }}
+                                </h5>
+                                <br/>
+                                <button (click)="deleteConfirmDeleteDialog('accepted')" class="confirm-btn">Xác nhận</button>
+                                <button (click)="closeConfirmDeleteDialog()" class="cancel-btn">Hủy</button>
                             </div>
+                        </div>
                         <button class="resolve-btn" (click)="toggleLockStatus(contact)">
                         {{ contact.status === 'Giải quyết' ? 'Hủy xác nhận' : 'Xác nhận' }}
                         </button>

@@ -145,3 +145,129 @@
     background-color: #2d2e3d;
     color: red;
 }
+
+.information-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10000;
+}
+
+.information-form form {
+    background: #171821;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 40%;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.information-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.information-header h3 {
+    margin: 0;
+    font-size: 25px;
+    color: white;
+}
+
+.information-header .close-button {
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+.information-header .close-button:hover {
+    color: red;
+    background: none;
+}
+
+.information-form .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.information-form label {
+    color: white;
+    font-weight: 500;
+    margin-right: 100px;
+    width: 120px;
+}
+
+.information-form p {
+    color: gray;
+}
+
+.information-form input[type="text"],
+.information-form input[type="email"] {
+    background-color: #21222D;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    margin: 0;
+    width: 60%;
+    background-clip: padding-box;
+}
+
+.information-form input[type="text"]:hover,
+.information-form input[type="email"]:hover {
+    background-color: #1A1B24;
+    outline: none;
+}
+
+.information-form input[type="text"]:focus,
+.information-form input[type="email"]:focus {
+    background-color: #1A1B24;
+    outline: none;
+}
+
+.information-form button {
+    border: 2px solid #00c3ff;
+    background-color: transparent;
+    color: #00c3ff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 30px;
+    margin: 15px 0px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.information-form button:hover {
+    background-color: #00c3ff;
+    color: white;
+}
+
+.information-form img.avatar-preview {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
