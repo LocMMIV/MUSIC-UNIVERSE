@@ -55,6 +55,7 @@ h3 {
     gap: 10px;
     text-align: left;
     padding: 8px;
+    margin: 2px 0px;
     position: relative;
 }
 
@@ -68,49 +69,52 @@ h3 {
 }
 
 .play-icon,
-.bi-list,
 .bi-heart, .bi-heart-fill {
     position: absolute;
     top: 50%;
     left: 10%;
-    transform: translate(-50%, -50%); /* Căn giữa biểu tượng */
+    transform: translate(-50%, -50%);
     font-size: 30px;
     color: white;
-    opacity: 0;  /* Ẩn biểu tượng ban đầu */
+    opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.bi-list {
-    top: 50%;
-    left: 92%;
-    font-size: 15px;
+.bi-heart:hover, .bi-heart-fill:hover {
+    background-color: #171821;
+    border-radius: 50%;
+    padding: 6px 10px;
 }
 
 .bi-heart, .bi-heart-fill {
     top: 50%;
-    left: 80%;
+    left: 90%;
     font-size: 15px;
-}
-
-.column:hover .play-icon,
-.column:hover .bi-list,
-.column:hover .bi-heart, .column:hover .bi-heart-fill {
-    opacity: 1;  /* Hiển thị khi hover */
 }
 
 .bi-heart, .bi-heart-fill {
     color: red;
 }
 
+.column:hover .play-icon, 
+.column:hover .bi-heart, .column:hover .bi-heart-fill {
+    opacity: 1;
+}
+
+.column.active {
+    background-color: #21222D;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
 img {
     display: block;
     width: 60px;
     height: 60px;
-    object-fit: cover; /* Đảm bảo hình ảnh không bị méo và đầy khung */
+    object-fit: cover;
 }
 
 .column:hover img {
-    filter: brightness(50%);  /* Giảm độ sáng khi hover */
+    filter: brightness(50%);
 }
 
 
@@ -204,3 +208,5 @@ img {
     -webkit-text-fill-color: white;
     position: relative;
 }
+
+

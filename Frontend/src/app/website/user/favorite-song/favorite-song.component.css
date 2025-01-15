@@ -1,0 +1,159 @@
+.container-fluid {
+    padding: 50px;
+}
+
+.favorite-song-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.favorite-song-table th,
+.favorite-song-table td {
+    text-align: left;
+    padding: 10px;
+}
+
+.favorite-song-table th {
+    font-size: 14px;
+    color: gray;
+    text-transform: uppercase;
+    border-bottom: 1px solid #595962;
+}
+
+.favorite-song-table td {
+    font-size: 16px;
+    vertical-align: middle;
+    border-bottom: 1px solid #595962;
+}
+
+.favorite-song-table tr:hover td {
+    background-color: #21222D;
+}
+
+.favorite-song-table tr:hover .favorite-song-name {
+    color: deepskyblue;
+}
+
+.favorite-song-table tr:hover .artist,
+.favorite-song-table tr:hover .duration,
+.favorite-song-table tr:hover .bi-music-note-beamed,
+.favorite-song-table tr:hover .bi-list {
+    color: white;
+}
+
+.favorite-song-table tr:hover .album-cover {
+    filter: brightness(0.8);
+}
+
+.favorite-song-table th:nth-child(1),
+.favorite-song-table td:nth-child(1) { 
+    width: 5%;
+    text-align: center;
+}
+.favorite-song-table th:nth-child(2),
+.favorite-song-table td:nth-child(2) { 
+    width: 45%; 
+    text-align: left;
+}
+
+.favorite-song-table th:nth-child(3),
+.favorite-song-table td:nth-child(3) {
+    display: none;
+}
+
+.favorite-song-table th:nth-child(4),
+.favorite-song-table td:nth-child(4) { 
+    width: 40%; 
+    text-align: left;
+}
+.favorite-song-table th:nth-child(5),
+.favorite-song-table td:nth-child(5) { 
+    width: 10%; 
+    text-align: center;
+}
+
+.favorite-song-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.favorite-song-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 6%;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.favorite-song-info:hover .play-icon {
+    display: block;
+}
+
+.favorite-song-info:hover .favorite-song-image {
+    filter: brightness(0.6);
+}
+
+.favorite-song-duration {
+    display: flex;
+    align-items: center;
+}
+
+.favorite-song-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.favorite-song-name {
+    font-weight: 500;
+    color: white;
+    font-size: 18px;
+    margin: 0;
+}
+
+.artist {
+    font-size: 15px;
+    color: gray;
+    font-weight: 500;
+    margin: 0;
+}
+
+.duration {
+    font-size: 15px;
+    color: gray;
+    font-weight: 500;
+    margin: 0;
+}
+
+.bi-music-note-beamed {
+    color: gray;
+}
+
+.bi-heart {
+    color: #ff4d4d;
+    margin-right: 20px;
+}
+
+.bi-heart-fill {
+    color: #ff4d4d;
+    margin-right: 20px;
+}
+
+.bi-list {
+    color: gray;
+}
+
+.bi-list:hover {
+    border-radius: 50%;
+    background-color: #171821;
+    padding: 8px 11px;
+}
+

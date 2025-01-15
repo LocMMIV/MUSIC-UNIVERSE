@@ -6,15 +6,27 @@
         </div>
         <br>
         <div class="suggest-item">
-            <div class="row" *ngFor="let row of suggestRows">
-                <div class="column" *ngFor="let song of row; let i = index">
-                    <img [src]="song.image" alt="song image">
-                    <i class="bi bi-play-fill play-icon"></i>
-                    <i class="bi" [ngClass]="song.isLiked ? 'bi-heart-fill' : 'bi-heart'" (click)="toggleLike(i)"></i>
-                    <i class="bi bi-list"></i>
+            <div class="row" *ngFor="let suggest of suggestRows; let rowIndex = index">
+                <div class="column" *ngFor="let suggestSong of suggest; let i = index" 
+                (click)="playSong(suggestSong)" [class.active]="currentSong === suggestSong">
+
+                    <img [src]="suggestSong.image" [alt]="suggestSong.songName">
+
+                    <i class="bi" [ngClass]="{
+                        'bi-pause-fill': currentSong === suggestSong, 
+                        'bi-play-fill': currentSong !== suggestSong,
+                        'active': currentSong === suggestSong }" 
+                    class="play-icon"></i>
+                    <i class="bi" [ngClass]="{
+                        'bi-heart-fill': suggestSong.isLiked, 
+                        'bi-heart': !suggestSong.isLiked,
+                        'active': currentSong === suggestSong }" 
+                    (click)="toggleLike(rowIndex, i); $event.stopPropagation()">
+                    </i>
+
                     <div class="title">
-                        <h5>{{ song.title }}</h5>
-                        <p>{{ song.artist }}</p>
+                        <h5>{{ suggestSong.songName }}</h5>
+                        <p>{{ suggestSong.artist }}</p>
                     </div>
                 </div>
             </div>
@@ -22,7 +34,6 @@
     </div>
     
     <br><br>
-    
     
     <div class="new">
         <div class="new-text">
@@ -31,21 +42,32 @@
         </div>
         <br>
         <div class="new-item">
-            <div class="row" *ngFor="let row of newRows">
-                <div class="column" *ngFor="let song of row">
-                    <img [src]="song.image" alt="song image">
-                    <i class="bi bi-play-fill play-icon"></i>
+            <div class="row" *ngFor="let new of newRows">
+                <div class="column" *ngFor="let newSong of new; let i = index" 
+                (click)="playSong(newSong)" [class.active]="currentSong === newSong">
+
+                    <img [src]="newSong.image" [alt]="newSong.songName">
+
+                    <i class="bi" [ngClass]="{
+                        'bi-pause-fill': currentSong === newSong, 
+                        'bi-play-fill': currentSong !== newSong,
+                        'active': currentSong === newSong }" 
+                    class="play-icon"></i>
+
                     <div class="title">
-                        <h5>{{ song.title }}</h5>
-                        <p>{{ song.artist }}</p>
+                        <h5>{{ newSong.songName }}</h5>
+                        <p>{{ newSong.artist }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <audio #audioPlayer>
+        <source [src]="currentSong?.audioUrl" type="audio/mp3">
+    </audio>
     
     <br><br>
-    
     <div class="chart">
         <div class="left">
             <a routerLink="/unichart">#unichart<i class="bi bi-play-circle-fill"></i></a>
@@ -57,5 +79,5 @@
             
             Nội dung bên phải (60%)
         </div>
-      </div>
+    </div>
 </div>

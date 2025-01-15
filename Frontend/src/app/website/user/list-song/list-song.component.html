@@ -1,16 +1,35 @@
 <div class="container-fluid">
+    <div class="genre">
+        <div class="filters">
+            <div class="filter-item">
+                <div class="genre-filters">
+                    <button (click)="setGenre('Ballad')" 
+                        [class.active]="selectedGenre === 'Ballad'"><i class="bi bi-music-note"></i>Ballad</button>
+                    <button (click)="setGenre('Lofi')" 
+                        [class.active]="selectedGenre === 'Lofi'"><i class="bi bi-music-note"></i>Lofi</button>
+                    <button (click)="setGenre('Remix')" 
+                        [class.active]="selectedGenre === 'Remix'"><i class="bi bi-music-note"></i>Remix</button>
+                    <button (click)="setGenre('V-pop')" 
+                        [class.active]="selectedGenre === 'V-pop'"><i class="bi bi-music-note"></i>V-pop</button>
+                    <button (click)="setGenre('Rap')" 
+                        [class.active]="selectedGenre === 'Rap'"><i class="bi bi-music-note"></i>Rap</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table class="song-table">
         <thead>
             <tr>
                 <th></th>
                 <th>BÀI HÁT</th>
+                <th>THỂ LOẠI</th>
                 <th>NGHỆ SĨ</th>
                 <th>THỜI GIAN</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let song of songs; let i = index">
+            <tr *ngFor="let song of filteredSongs; let i = index">
                 <td><i class="bi bi-music-note-beamed"></i></td>
                 <td>
                     <div class="song-info">
@@ -18,9 +37,11 @@
                             <img [src]="song.image" alt="" class="song-image">
                             <i class="bi bi-play-fill play-icon"></i>
                         </div>
+
                         <span class="song-name">{{ song.songName }}</span>
                     </div>
                 </td>
+                <td>{{ song.genre }}</td>
                 <td><p class="artist">{{ song.artist }}</p></td>
                 <td>
                     <div class="song-duration">
@@ -28,7 +49,6 @@
                         <p class="duration">{{ song.duration }}</p>
                     </div>
                 </td>
-                <td><i class="bi bi-list"></i></td>
             </tr>
         </tbody>
     </table>

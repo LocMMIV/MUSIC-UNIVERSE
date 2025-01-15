@@ -1,1 +1,36 @@
-<p>favorite-song works!</p>
+<div class="container-fluid">
+    <table class="favorite-song-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>BÀI HÁT</th>
+                <th>THỂ LOẠI</th>
+                <th>NGHỆ SĨ</th>
+                <th>THỜI GIAN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let favoriteSong of favoriteSongs; let i = index">
+                <td><i class="bi bi-music-note-beamed"></i></td>
+                <td>
+                    <div class="favorite-song-info">
+                        <div class="image-wrapper">
+                            <img [src]="favoriteSong.image" alt="" class="favorite-song-image">
+                            <i class="bi bi-play-fill play-icon"></i>
+                        </div>
+
+                        <span class="favorite-song-name">{{ favoriteSong.songName }}</span>
+                    </div>
+                </td>
+                <td>{{ favoriteSong.genre }}</td>
+                <td><p class="artist">{{ favoriteSong.artist }}</p></td>
+                <td>
+                    <div class="favorite-song-duration">
+                        <i class="bi" [ngClass]="favoriteSong.isLiked ? 'bi-heart-fill' : 'bi-heart'" (click)="toggleLike(i)"></i>
+                        <p class="duration">{{ favoriteSong.duration }}</p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

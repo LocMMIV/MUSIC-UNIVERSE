@@ -9,7 +9,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MusicbarComponent } from './components/musicbar/musicbar.component';
 import { HomeComponent } from './home/home.component';
 import { UnichartComponent } from './unichart/unichart.component';
-import { TypeComponent } from './type/type.component';
 import { MusicsidebarComponent } from './components/musicsidebar/musicsidebar.component';
 import { ListSongComponent } from './list-song/list-song.component';
 import { FavoriteSongComponent } from './favorite-song/favorite-song.component';
@@ -22,7 +21,6 @@ import { FavoriteSongComponent } from './favorite-song/favorite-song.component';
     MusicbarComponent,
     HomeComponent,
     UnichartComponent,
-    TypeComponent,
     MusicsidebarComponent,
     ListSongComponent,
     FavoriteSongComponent,
